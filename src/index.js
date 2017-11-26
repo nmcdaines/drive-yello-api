@@ -2,9 +2,14 @@
 // Practical Test - Drive Yello
 // Solution by Nate Daines
 
+// ENVIRONMENT CONFIG - Uses the .env file in the project root
+require('dotenv').config();
+
 import express from 'express';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
+
+
 
 const PORT = process.env.PORT || 8090;
 const HOST = process.env.HOSTNAME || '0.0.0.0';
