@@ -28,6 +28,7 @@ export const validate = ({ pickupAddress, deliveryAddress }) => {
   if (typeof pickupAddress=== 'undefined') {
     result.errors.push("No pickupAddress supplied");
     result.errorCount += 1;
+  } else {
 
     // Pickup Address > Text
     if (typeof pickupAddress.text === 'undefined') {
@@ -51,13 +52,14 @@ export const validate = ({ pickupAddress, deliveryAddress }) => {
       result.errors.push("No pickupAddress.lng supplied");
       result.errorCount += 1;
     }
-
   }
+
 
   // Delivery Address
   if (typeof deliveryAddress=== 'undefined') {
     result.errors.push("No deliveryAddress supplied");
     result.errorCount += 1;
+  } else {
 
     // Delivery Address > Text
     if (typeof deliveryAddress.text === 'undefined') {
