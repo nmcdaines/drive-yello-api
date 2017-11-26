@@ -45,3 +45,20 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# =========================
+# IDE
+# =========================
+
+# Visual Studio Code
+.vscode/
+
+# Idea
+.idea/
+
+# =========================
+# NODEJS
+# =========================
+
+# Dependency Directories
+node_modules/
