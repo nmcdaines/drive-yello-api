@@ -10,7 +10,12 @@ const router = express.Router();
 router.use(authenticationMiddleware);
 
 router.get('/', async (req,res) => {
-  let orders = await listOrders();
+  let count = req.query.count || undefined;
+  let page = req.query.page || undefined;
+  let sort = req.query.sort || undefined;
+
+  let orders = await listOrders({count, page, sort});
+
   return res.send(orders);
 });
 

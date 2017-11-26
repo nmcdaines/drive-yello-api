@@ -3,9 +3,49 @@ import { resultTemplate } from '../../lib/resultTemplate';
 import fetch from 'node-fetch';
 
 
-export const listOrders = async () => {
-  let order = await Order.find({}).exec();
-  return Object.assign({}, resultTemplate(), {data:order});
+const sortOrderAsc = (a,b) => {
+  return a.eta - b.eta;
+};
+
+const sortOrderDsc = (a,b) => {
+  return b.eta - a.eta;
+};
+
+
+export const listOrders = async ({count, page, sort}) => {
+  let orders = await Order.find({}).exec();
+
+  if (typeof sort !== 'undefined') {
+    if (sort === 'asc') orders.sort(sortOrderAsc);
+    if (sort === 'dsc') orders.sort(sortOrderDsc);
+  }
+
+  var data = {};
+
+  if (typeof count !== 'undefined') {
+    let selectedPage = page || 0;
+    var orderPage = orders.splice(count * page, count);
+
+    var totalPages = orderPage.length / count;
+    if (orderPage.length % count > 0) totalPages += 1;
+
+    data = {
+      total: orderPage.length,
+      orders: orderPage,
+      page,
+      sort,
+    }
+  } else {
+    data = {
+      total: orders.length,
+      orders: orders,
+      sort,
+    };
+  }
+
+
+
+  return Object.assign({}, resultTemplate(), {data});
 };
 
 export const findOrder = async ({id}) => {

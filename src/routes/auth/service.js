@@ -33,6 +33,7 @@ export const createUser = async ({username, password}) => {
   return result;
 };
 
+// TODO: Implement Update User
 export const updateUser = async ({username, password}) => {
 
 };

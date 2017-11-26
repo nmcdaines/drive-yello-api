@@ -8,6 +8,7 @@ export const userSchema = new Schema({
 });
 
 
+// Validate User Object
 export const validate = ({ username, password }) => {
 
   const result = {
